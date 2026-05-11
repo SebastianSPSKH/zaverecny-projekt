@@ -1,74 +1,60 @@
-abstract class Product {
-    protected name!: string;
-    protected basePrice!: number;
-
-    constructor(name: string, basePrice: number) {
+"use strict";
+class Product {
+    name;
+    basePrice;
+    constructor(name, basePrice) {
         this.setName(name);
         this.setBasePrice(basePrice);
     }
-
-    protected setName(name: string): void {
+    setName(name) {
         const normalized = name.trim();
         if (!normalized) {
             throw new Error("Jméno produktu nesmí být prázdné.");
         }
         this.name = normalized;
     }
-
-    protected setBasePrice(basePrice: number): void {
+    setBasePrice(basePrice) {
         if (!Number.isFinite(basePrice) || basePrice < 0) {
             throw new Error("Základní cena musí být nezáporné číslo.");
         }
         this.basePrice = basePrice;
     }
-
-    public getName(): string {
+    getName() {
         return this.name;
     }
-
-    public getBasePrice(): number {
+    getBasePrice() {
         return this.basePrice;
     }
-
-    public abstract calculatePrice(): number;
 }
-
 class Notebook extends Product {
-    private ram!: number;
-
-    constructor(name: string, basePrice: number, ram: number) {
+    ram;
+    constructor(name, basePrice, ram) {
         super(name, basePrice);
         this.setRam(ram);
     }
-
-    private setRam(ram: number): void {
+    setRam(ram) {
         if (!Number.isInteger(ram) || ram <= 0) {
             throw new Error("RAM musí být kladné celé číslo.");
         }
         this.ram = ram;
     }
-
-    public calculatePrice(): number {
+    calculatePrice() {
         return this.basePrice + this.ram * 500;
     }
 }
-
 class Phone extends Product {
-    private has5G!: boolean;
-
-    constructor(name: string, basePrice: number, has5G: boolean) {
+    has5G;
+    constructor(name, basePrice, has5G) {
         super(name, basePrice);
         this.setHas5G(has5G);
     }
-
-    private setHas5G(has5G: boolean): void {
+    setHas5G(has5G) {
         if (typeof has5G !== "boolean") {
             throw new Error("has5G musí být boolean hodnota.");
         }
         this.has5G = has5G;
     }
-
-    public calculatePrice(): number {
+    calculatePrice() {
         return this.basePrice + (this.has5G ? 2000 : 0);
     }
 }
