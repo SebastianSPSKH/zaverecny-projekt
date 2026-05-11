@@ -1,12 +1,16 @@
+// Základní třída pro všechny produkty.
+// Obsahuje společná data a kontrolu platnosti.
 abstract class Product {
     protected name!: string;
     protected basePrice!: number;
 
+    // Vytvoří produkt se jménem a základní cenou.
     constructor(name: string, basePrice: number) {
         this.setName(name);
         this.setBasePrice(basePrice);
     }
 
+    // Vynutí neprázdné jméno produktu.
     protected setName(name: string): void {
         const normalized = name.trim();
         if (!normalized) {
@@ -15,6 +19,7 @@ abstract class Product {
         this.name = normalized;
     }
 
+    // Vynutí nezápornou základní cenu.
     protected setBasePrice(basePrice: number): void {
         if (!Number.isFinite(basePrice) || basePrice < 0) {
             throw new Error("Základní cena musí být nezáporné číslo.");
@@ -22,17 +27,21 @@ abstract class Product {
         this.basePrice = basePrice;
     }
 
+    // Vrátí název produktu.
     public getName(): string {
         return this.name;
     }
 
+    // Vrátí základní cenu produktu.
     public getBasePrice(): number {
         return this.basePrice;
     }
 
+    // Každá podtřída musí spočítat konečnou cenu.
     public abstract calculatePrice(): number;
 }
 
+// Třída pro notebooky s cenou navázanou na velikost RAM.
 class Notebook extends Product {
     private ram!: number;
 
@@ -41,6 +50,7 @@ class Notebook extends Product {
         this.setRam(ram);
     }
 
+    // Ověří a uloží velikost RAM.
     private setRam(ram: number): void {
         if (!Number.isInteger(ram) || ram <= 0) {
             throw new Error("RAM musí být kladné celé číslo.");
@@ -48,11 +58,13 @@ class Notebook extends Product {
         this.ram = ram;
     }
 
+    // K základní ceně přičte cenu za RAM.
     public calculatePrice(): number {
         return this.basePrice + this.ram * 500;
     }
 }
 
+// Třída pro telefony s volitelným příplatkem za 5G.
 class Phone extends Product {
     private has5G!: boolean;
 
@@ -61,6 +73,7 @@ class Phone extends Product {
         this.setHas5G(has5G);
     }
 
+    // Ověří, zda telefon má 5G.
     private setHas5G(has5G: boolean): void {
         if (typeof has5G !== "boolean") {
             throw new Error("has5G musí být boolean hodnota.");
@@ -68,11 +81,13 @@ class Phone extends Product {
         this.has5G = has5G;
     }
 
+    // K základní ceně přičte příplatek za 5G.
     public calculatePrice(): number {
         return this.basePrice + (this.has5G ? 2000 : 0);
     }
 }
 
+// Převádí surové datové objekty na instance produktů.
 function createProduct(item: any): Product {
     if (item.category === "Notebook") {
         if (item.ram === undefined) {
