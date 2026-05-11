@@ -72,3 +72,21 @@ class Phone extends Product {
         return this.basePrice + (this.has5G ? 2000 : 0);
     }
 }
+
+declare const catalog: ProductData[];
+
+function createProduct(item: ProductData): Product {
+    if (item.category === "Notebook") {
+        if (item.ram === undefined) {
+            throw new Error(`Notebook ${item.name} musí obsahovat hodnotu RAM.`);
+        }
+        return new Notebook(item.name, item.basePrice, item.ram);
+    } else if (item.category === "Phone") {
+        if (item.has5G === undefined) {
+            throw new Error(`Phone ${item.name} musí mít nastavené has5G.`);
+        }
+        return new Phone(item.name, item.basePrice, item.has5G);
+    } else {
+        throw new Error(`Neznámá kategorie produktu: ${item.category}`);
+    }
+}
