@@ -73,17 +73,7 @@ class Phone extends Product {
     }
 }
 
-type ProductData = {
-    category: "Notebook" | "Phone";
-    name: string;
-    basePrice: number;
-    ram?: number;
-    has5G?: boolean;
-};
-
-declare const catalog: ProductData[];
-
-function createProduct(item: ProductData): Product {
+function createProduct(item: any): Product {
     if (item.category === "Notebook") {
         if (item.ram === undefined) {
             throw new Error(`Notebook ${item.name} musí obsahovat hodnotu RAM.`);
