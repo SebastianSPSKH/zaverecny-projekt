@@ -54,7 +54,7 @@ const products: ProductData[] = [
     name: "Nokia G22",
     basePrice: 6999,
     has5G: false,
-  },
+  }
 ];
 
 const catalog = products;
