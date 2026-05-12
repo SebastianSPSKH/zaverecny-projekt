@@ -1,4 +1,4 @@
-/// <reference path="classes.ts" />
+/// <reference path="products.ts" />
 /// <reference path="data.ts" />
 
 const testProducts: Product[] = catalog.map(createProduct);
