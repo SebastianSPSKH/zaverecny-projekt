@@ -7,5 +7,4 @@ testProducts.forEach((product, index) => {
     console.log(`  Název: ${product.getName()}`);
     console.log(`  Základní cena: ${product.getBasePrice()} Kč`);
     console.log(`  Konečná cena: ${product.calculatePrice()} Kč`);
-    console.log();
 });
