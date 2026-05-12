@@ -5,7 +5,7 @@ const testProducts: Product[] = catalog.map(createProduct);
 
 testProducts.forEach((product, index) => {
     console.log(`Produkt ${index + 1}:`);
-    console.log(`  Kategorie: ${product instanceof Notebook ? "Notebook" : "Phone"}`);
+    console.log(`  Kategorie: ${product.getCategory()}`);
     console.log(`  Název: ${product.getName()}`);
     console.log(`  Základní cena: ${product.getBasePrice()} Kč`);
     console.log(`  Konečná cena: ${product.calculatePrice()} Kč`);

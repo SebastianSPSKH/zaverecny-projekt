@@ -2,12 +2,18 @@
 // Základní třída pro všechny produkty.
 // Obsahuje společná data a kontrolu platnosti.
 class Product {
+    category;
     name;
     basePrice;
-    // Vytvoří produkt se jménem a základní cenou.
-    constructor(name, basePrice) {
+    // Vytvoří produkt se jménem, základní cenou a kategorií.
+    constructor(category, name, basePrice) {
+        this.setCategory(category);
         this.setName(name);
         this.setBasePrice(basePrice);
+    }
+    // Uloží kategorii produktu.
+    setCategory(category) {
+        this.category = category;
     }
     // Vynutí neprázdné jméno produktu.
     setName(name) {
@@ -24,6 +30,10 @@ class Product {
         }
         this.basePrice = basePrice;
     }
+    // Vrátí kategorii produktu.
+    getCategory() {
+        return this.category;
+    }
     // Vrátí název produktu.
     getName() {
         return this.name;
@@ -37,7 +47,7 @@ class Product {
 class Notebook extends Product {
     ram;
     constructor(name, basePrice, ram) {
-        super(name, basePrice);
+        super("Notebook", name, basePrice);
         this.setRam(ram);
     }
     // Ověří a uloží velikost RAM.
@@ -56,7 +66,7 @@ class Notebook extends Product {
 class Phone extends Product {
     has5G;
     constructor(name, basePrice, has5G) {
-        super(name, basePrice);
+        super("Phone", name, basePrice);
         this.setHas5G(has5G);
     }
     // Ověří, zda telefon má 5G.
