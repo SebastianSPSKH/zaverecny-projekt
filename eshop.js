@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path="classes.ts" />
+/// <reference path="products.ts" />
 /// <reference path="data.ts" />
 const testProducts = catalog.map(createProduct);
 testProducts.forEach((product, index) => {
