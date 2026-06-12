@@ -4,11 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online e-shop</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Online e-shop</h1>
+    <header>
+        <h1>Online e-shop - Admin Panel</h1>
+        <p>Prohlížejte katalog notebooků a telefonů nebo přidejte nový produkt.</p>
+    </header>
+
+    <main>
+        <section class="catalog-section">
+            <div class="section-header">
+                <h2>Katalog produktů</h2>
+                <label for="filter">Filtr kategorie:</label>
+                <select id="filter">
+                    <option value="all">Vše</option>
+                    <option value="Notebook">Notebook</option>
+                    <option value="Phone">Phone</option>
+                </select>
+            </div>
+
+            <p id="product-count"></p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kategorie</th>
+                            <th>Název</th>
+                            <th>Základní cena</th>
+                            <th>Parametr</th>
+                            <th>Konečná cena</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body"></tbody>
+                </table>
+            </div>
+
+            <div id="product-cards"></div>
+        </section>
+
+        <section class="form-section">
+            <h2>Přidat produkt</h2>
+            <form id="product-form">
+                <label for="category">Kategorie</label>
+                <select id="category" required>
+                    <option value="Notebook">Notebook</option>
+                    <option value="Phone">Phone</option>
+                </select>
+
+                <label for="name">Název</label>
+                <input id="name" type="text" required>
+
+                <label for="basePrice">Základní cena (Kč)</label>
+                <input id="basePrice" type="number" min="0" required>
+
+                <div id="ram-field">
+                    <label for="ram">RAM (GB)</label>
+                    <input id="ram" type="number" min="1" step="1">
+                </div>
+
+                <div id="has5G-field">
+                    <label for="has5G">
+                        <input id="has5G" type="checkbox">
+                        Podpora 5G
+                    </label>
+                </div>
+
+                <button type="submit">Přidat produkt</button>
+            </form>
+            <p id="error-message"></p>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="products.js"></script>
+    <script src="eshop.js"></script>
 </body>
-<script src="data.js"></script>
-<script src="products.js"></script>
-<script src="eshop.js"></script>
 </html>

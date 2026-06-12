@@ -2,9 +2,6 @@
 // Základní třída pro všechny produkty.
 // Obsahuje společná data a kontrolu platnosti.
 class Product {
-    category;
-    name;
-    basePrice;
     // Vytvoří produkt se jménem, základní cenou a kategorií.
     constructor(category, name, basePrice) {
         this.setCategory(category);
@@ -45,7 +42,6 @@ class Product {
 }
 // Třída pro notebooky s cenou navázanou na velikost RAM.
 class Notebook extends Product {
-    ram;
     constructor(name, basePrice, ram) {
         super("Notebook", name, basePrice);
         this.setRam(ram);
@@ -64,7 +60,6 @@ class Notebook extends Product {
 }
 // Třída pro telefony s volitelným příplatkem za 5G.
 class Phone extends Product {
-    has5G;
     constructor(name, basePrice, has5G) {
         super("Phone", name, basePrice);
         this.setHas5G(has5G);
